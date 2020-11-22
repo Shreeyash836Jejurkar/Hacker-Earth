@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
                     ),
                 onPressed: () async {
 
-                  Uri apiUrl = Uri.parse("  ");  //api url here
+                  Uri apiUrl = Uri.parse("http://adityayadav800.pythonanywhere.com/calc/");  //api url here
                   final imageUploadRequest =
                       http.MultipartRequest('POST', apiUrl);
                   final mimeTypeData =
@@ -174,7 +174,7 @@ Widget _bottomCard(String predict) {
     children: [
       Text("Analysis"),
       Text(
-       predict==""?"The Answer is correct":predict,
+       predict==""?"Your result":predict,
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
     ],

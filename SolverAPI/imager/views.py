@@ -15,19 +15,23 @@ import os
 # Create your views here.
 @api_view(["POST"])
 def calc(request):
-    #img=request.FILES['url']
-    #print(type(img),"((*(*(*(*(*(*(((((")
+
     try:
     	if(request.method=='POST'):
             fileName = str(request.POST.get('filename'))
             img=request.FILES[fileName]
             m=UploadImageTest()
             m.image=img
-            m.save()
-            print(os.getcwd())
+            m.save()       
             img=Image.open('media/'+m.image.name)
             x=pytesseract.image_to_string(img)
-            print(x,type(x),"((*(*(*(*(*(*(((((")
+            result=x.split('=')
+            ans=result[1]
+            result=eval(result[0])
+            if(result==ans):
+                x="The Answer is Correct"
+            else:
+                x="The Answer is Wrong"
             return JsonResponse({"result":x})
     except Exception as e:
         print(e)
